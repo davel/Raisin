@@ -12,6 +12,7 @@ use Raisin::Entity;
 use Types::Standard qw(Any Int Str);
 
 use MusicApp::Entity::Artist;
+use MusicApp::Entity::ArtistList;
 use MusicApp::Entity::Album;
 
 use MusicApp::Schema;
@@ -30,7 +31,7 @@ desc 'Artist API';
 resource artists => sub {
     summary 'List';
     params optional('name', type => Str);
-    entity 'MusicApp::Entity::Artist';
+    entity 'MusicApp::Entity::ArtistList';
     get sub {
         my $params = shift;
         my $artists = $schema->resultset('Artist');
