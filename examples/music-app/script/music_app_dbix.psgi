@@ -13,6 +13,7 @@ use Types::Standard qw(Any Int Str);
 
 use MusicApp::Entity::Artist;
 use MusicApp::Entity::ArtistList;
+use MusicApp::Entity::GetArtist;
 use MusicApp::Entity::Album;
 
 use MusicApp::Schema;
@@ -42,7 +43,7 @@ resource artists => sub {
     };
 
     params requires('id', type => Int);
-    entity 'MusicApp::Entity::Artist';
+    entity 'MusicApp::Entity::GetArtist';
     route_param id => sub {
         get sub {
             my $params = shift;
