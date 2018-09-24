@@ -29,10 +29,12 @@ api_default_format 'yaml';
 desc 'Artist API';
 resource artists => sub {
     summary 'List';
+    params optional('name', type => Str);
     entity 'MusicApp::Entity::Artist';
     get sub {
         my $params = shift;
         my $artists = $schema->resultset('Artist');
+        $artists = $artists->search( 'name' => { like => $params->{name} } ) if defined($params->{name});
 
         present data => $artists, with => 'MusicApp::Entity::Artist';
         present count => $artists->count;
